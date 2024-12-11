@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta authors="이해은"/>
+	<title> 지도 </title>
+ 
+
+<body>
+	
+	<div id="map" style="width:750px;height:350px;"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af04e31aece079526ef811a354b92ff5"></script>
+<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new kakao.maps.LatLng(37.24906, 127.05187), // 지도의 중심좌표
+	        level: 6, // 지도의 확대 레벨
+	        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+	    }; 
+	// 지도를 생성한다 
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	// 지도 중심 좌표 변화 이벤트를 등록한다
+	kakao.maps.event.addListener(map, 'center_changed', function () {
+		console.log('지도의 중심 좌표는 ' + map.getCenter().toString() +' 입니다.');
+	});
+</script>
+</body>
+</html>
