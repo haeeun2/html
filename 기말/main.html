@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta authors="이해은, 김다흰"/>
+	<title>Welcome to Lucid Cinema</title>
+	<link rel="stylesheet" type="text/css" href="style-size.css"/>
+	<link rel="stylesheet" type="text/css" href="style-layout.css"/>
+	<link rel="stylesheet" type="text/css" href="style-presentation.css"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Lacquer&family=Rubik+Bubbles&family=Rubik+Puddles&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Gloria+Hallelujah&family=Lacquer&family=Rubik+Bubbles&family=Rubik+Puddles&display=swap');
+
+button { font-family: "Dongle", sans-serif;  font-weight: 400;   font-size: 20px; font-style: normal;}
+    
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<header>
+    <a id="logo" href="main.html"> Lucid Cinema </a>
+    <span class="right" style="padding: 30px 10px;">
+        <a href="login.html" target="display_area">로그인</a> |
+        <a href="signup.html" target="_blank">회원가입</a>
+    </span>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="domestic_movies.html" target="display_area">국내영화</a></li>
+        <li><a href="foreign_movies.html" target="display_area">해외영화</a></li>
+        <li><a href="clip.html" target="display_area">Clip/OST</a></li>
+        <li class="right"><a href="order.html" target="display_area">예매하기</a></li>
+    </ul>
+</nav>
+
+<hr/>
+
+<article class="left">
+    <iframe name="display_area" src="back/soap.jpg" seamless="true"
+            width="600px" height="500px"></iframe>
+</article>
+
+<aside class="right">
+    <button class="wow" id="save_favorite" style="width:100px" disabled>관심영화등록</button><br/><br/>
+    <button class="wow" id="view_favorite" style="width:100px" disabled>관심리스트</button><br/><br/>
+    <button class="wow" id="album_btn" style="width:100px" disabled>시청한영화</button><br/><br/>
+    <button class="wow" id="location" style="width:100px" disabled>장소</button><br/><br/>
+    <button class="wow" id="memo" style="width:100px" disabled>메모장</button> 
+</aside>
+
+<hr/>
+
+<footer>  
+   <div id="copyright">
+       Copyright (c) 243430 이해은, 241226 김다흰 Inc. All rights reserved
+   </div>
+</footer>   
+<tfoot>   
+   <div id="Site">
+       <a href="https://www.cgv.co.kr/" target="_blank">
+           <img src="로고/cgv.png" height="30" alt="CGV">
+       </a>
+       <a href="https://www.lottecinema.co.kr/" target="_blank">
+           <img src="로고/lotte.png" height="30" alt="Lottecinema">
+       </a>
+       <a href="https://www.megabox.co.kr/" target="_blank">
+           <img src="로고/mega.png" height="30" alt="Megabox">
+       </a>
+    </div>
+</tfoot>
+
+
+<script type="text/javascript" src="main.js"></script>
+ 
+</body>
+</html>

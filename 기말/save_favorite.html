@@ -1,0 +1,86 @@
+<html>
+<head> 
+	<meta charset="utf-8"/>
+	<meta name="Author" content="김다흰">
+	<title> Save Favorite Movies </title>
+	<link rel="stylesheet" type="text/css" href="style-size.css"/>
+	<link rel="stylesheet" type="text/css" href="style-layout.css"/>
+	<link rel="stylesheet" type="text/css" href="style-presentation.css"/>
+ 
+<script type="text/javascript">
+<!--
+    function save_favorite() {
+        var localStorage = window.localStorage;
+        if (!localStorage) {
+            // local storage is not supported by this browser.
+            // do nothing
+        }
+        else {
+			dom = document.getElementsByTagName("span");
+			var j = 0;
+            for(i=0;i<dom.length;i++) {
+				if (dom[i].firstChild.checked == true) {
+					localStorage["fav"+j] = dom[i].innerText;
+					j++;
+				}
+            }
+			localStorage.numFavorites = j;
+             
+        }
+    }
+-->
+</script>
+
+</head>
+<body class="movielist">
+
+  <p class="head"> 영화 목록 </p>
+  <form>
+	  <span><input type="checkbox"/>
+      1승 | 신연식 | 송강호,  박정민 | 12세 <br/></span>
+      <span><input type="checkbox"/>
+      히든페이스 | 김대우 | 송승헌,  조여정 | 19세 <br/></span>
+      <span><input type="checkbox"/>
+      청설 | 조선호 | 홍경 ,  노윤서 | 전체 <br/></span>
+      <span><input type="checkbox"/>
+      소방관 | 곽경택 | 주원,  곽도원 | 12세 <br/></span>
+      <span><input type="checkbox"/>
+      아마존 활명수 | 김창주 | 류승룡, 진선규 | 12세 <br/></span>
+      <span><input type="checkbox"/>
+      대가족 | 양우석 | 김윤석,  이승기 | 12세 <br/></span>
+      <span><input type="checkbox"/>
+      원정빌라 | 김선국 | 이현우,  문정희 | 15세 <br/></span>
+      <span><input type="checkbox"/>
+      아침바다 갈매기는 | 박이웅 | 윤주상 ,  양희경 | 12세 <br/></span>
+      <span><input type="checkbox"/>
+      문을 여는 법 | 박지완, 허지예 | 채서은, 심소영 | 전체 <br/></span>
+      <span><input type="checkbox"/>
+      해바라기 | 강석범 | 김래원,  김해숙 | 15세 <br/></span>
+	   <br/>
+      <span><input type="checkbox"/>
+      위키드 | 존 추 | 신시아 에리보, 아리아나 그란데 | 전체 <br/></span>
+      <span><input type="checkbox"/>
+      모아나2 | 데이브 데릭 주니어 | 김수연, 이장원 | 전체 <br/></span>
+      <span><input type="checkbox"/>
+      글래디 에이터 II | 리들리 스콧 | 폴 메스칼, 페드로 파스칼 | 19세 <br/></span>
+      <span><input type="checkbox"/>
+      서브 스턴스 | 코랄리 파르자 | 데미 무어, 마거릿 퀄리 | 19세 <br/></span>
+      <span><input type="checkbox"/>
+      나이브스 아웃 | 라이언 존슨 | 다니엘 크레이그, 크리스 에반스 | 12세 <br/></span>
+      <span><input type="checkbox"/>
+      블루 자이언트 | 타치카와 유즈루 | 야마다 유키, 마미야 쇼타로 | 12세 <br/></span>
+      <span><input type="checkbox"/>
+      클로즈 유어 아이즈 | 빅토르 에리세 | 마놀로 솔로, 아나 토렌트 | 12세 <br/></span>
+      <span><input type="checkbox"/>
+      더크로우 | 루퍼트 샌더스 |빌 스카스가드, 대니 휴스턴 | 19세 <br/></span>
+      <span><input type="checkbox"/>
+      애시드 레인:죽음의 비 | 저스트 필리포 | 기욤 카네, 레티티아 도슈 | 15세 <br/></span>
+      <span><input type="checkbox"/>
+      아노라 | 션 베이커 | 마이키 매디슨 | 19세 <br/></span>
+     
+  </form>
+
+  <button onclick="save_favorite();"> 관심영화 등록 </button>
+
+</body>
+</html>

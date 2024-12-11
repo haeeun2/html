@@ -1,0 +1,174 @@
+body { background-color: white; }
+img { border:none; }
+.wrap { text-align:left; background-color: white; }
+a { text-decoration: none; color: black;}
+#login .member { font-size: 16px; font-weight: bolder; }
+
+#logo { font-family: "Rubik Puddles", system-ui; cursive; font-weight: bold; color: #A5D8FA; font-size: 48px; text-shadow: 1px 1px 12px #48feca; }
+header .right a:hover { color: gray; }
+input { color:blue; }
+
+nav { background-color: #9ACD32; }
+nav ul { list-style:none; font-family: Verdana, Geneva, sans-serif; font-size: 14px;
+    font-weight: bold; color: #f0faef; 
+}
+nav a { text-decoration:none; color:#000000; border-style: hidden hidden solid hidden;
+    border-color: transparent;
+}
+nav a:hover { color: #006400;    border-color: #6B8E23; }
+
+
+.right button  { background-color: #45a049; padding: 15px 20px;  cursor: pointer;   
+            color: white;  text-align: center;  border: none; border-radius: 12px; 
+          
+       }
+
+        /* 버튼에 마우스를 올렸을 때 스타일 */
+        .right button:hover {
+            background-color: #c4ef99; }
+   
+
+footer #copyright { font-family: consolas; } 
+footer #Site a { text-decoration: none; }
+ 
+#signup {font-family: Arial, sans-serif; background-color: #d7f1c0; color: #333; margin: 0; padding: 20px;} 
+
+#signup form {background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 30px; max-width: 500px; margin: 0 auto;}
+
+#signup legend {font-size: 24px; font-weight: bold;
+    
+    
+    color: #4CAF50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#signup span {
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: inline-block;
+    color: #555;
+}
+
+#signup input[type="text"],
+#signup input[type="password"],
+#signup input[type="email"],
+#signup input[type="tel"],
+#signup input[type="date"],
+#signup select,
+#signup textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#signup textarea {resize: vertical;}
+    
+#signup input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+#signup input[type="button"] {
+    background-color: #87c993;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+
+
+#signup label {
+    font-size: 14px;
+    margin-right: 15px;
+    display: inline-block;
+    color: #555;
+}
+
+#signup label input {
+    margin-right: 5px;
+}
+
+#signup select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#signup input[type="color"] {
+    padding: 0;
+    border: none;
+    width: 50px;
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+#signup #reset2 {
+    background-color: #e56a6a;
+    color: white;
+    width: 100%;
+}
+
+#signup br {
+    margin-bottom: 10px;
+}
+
+
+.kmovielist { font-family: arial; background-color: #f0f0f0;
+    background-image: url("./back/k.jpg"); background-repeat: no-repeat;
+	background-position: 0px 0px;	border:solid 3px #39770d; border-radius:10px; width: 530px; height: 750px;
+}
+.kmovielist .head { font-size: 16px; font-weight: bolder;  }
+.kmovielist ul li { font-size: 12px; list-style-type: none; }
+
+.kmovielist ul li img { border: solid; border-color: lightgray; border-width: 1px; }
+
+
+.wmovielist { font-family: arial; background-color: #f0f0f0;
+    background-image: url("./back/w.jpg"); background-repeat: no-repeat;
+	background-position: 0px 0px;	border:solid 3px #39770d; border-radius:10px; width: 530px; height: 760px;}
+
+
+.wmovielist .head { font-size: 16px; font-weight: bolder; }
+.wmovielist ul li { font-size: 12px; list-style-type: none; } 
+
+.wmovielist ul li img { border: solid; border-color: lightgray; border-width: 1px; }
+
+
+.cliplist ul li { font-size: 12px; font-weight: bold; list-style-type: none;
+    text-shadow: 0.2em 0.2em 0.2em white; } 
+	
+.cliplist { font-family: arial; 
+    	
+}
+
+.head { font-size: 18px; font-weight: bold; }
+.movielist {background-image: url("./back/8.jpg");} 
+.movielist button  { background-color: ivory; padding: 5px 10px;  float: right;  margin: -13px 4px;
+              text-align: center;  border: none; border-radius: 8px; 
+          
+       }
+
+        /* 버튼에 마우스를 올렸을 때 스타일 */
+        .movielist button:hover {
+            background-color: gray; }
+
+
+.aerialview { background-image: background-color: #f0f0f0; }
+

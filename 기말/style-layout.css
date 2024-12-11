@@ -1,0 +1,38 @@
+body {	margin: 0;  padding: 0; font-size: 0.75em; line-height: 1.2em; }
+.wrap { margin: 0 auto; }
+header { vertical-align: middle; }
+.left  { float: left; }
+.right { float: right; }
+  
+#logo { float: left; vertical-align: middle; margin: 30px 0 0 20px; }
+.clear { clear: both; }
+hr { clear: both; }
+ 
+nav {  float: left; }
+nav ul li { float: left; margin: 0 5px; list-style-type: none; }
+nav a {	display: block;  padding: 5px; }
+ 
+footer #copyright { margin: 20px 0 0 10px; float: left; }
+footer #SNS { margin: 10px 20px 0 0; float: right; }
+
+aside {	margin: 5px; }
+article { margin: 5px 0 10px 0; }
+
+#login {margin: 30px;}
+#login fieldset span {display: inline-block; }
+#signup {margin: 30px; }
+#signup fieldset span { display: inline-block; vertical-align: middle; }
+#signup fieldset input {vertical-align: middle; }
+#order { margin: 30px; }
+
+.kmovielist { margin: 20px; padding: 5px; }
+.kmovielist .head { margin: 15px 0 20px 10px; }
+.kmovielist ul li { margin: 5px 5px 50px 5px; 
+                  list-style-type: none; float: left;  }
+				  
+.wmovielist { margin: 20px; padding: 5px; }
+.wmovielist .head { margin: 15px 0 20px 10px; }
+.wmovielist ul li { margin: 5px 5px 50px 5px; 
+                  list-style-type: none; float: left;  }	
+				  
+.movielist { margin: 10px; padding: 3px; overflow: hidden;}
