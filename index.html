@@ -557,6 +557,7 @@
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
         }
 
+        /* --- 여기서부터 수정된 이름 정렬 코드입니다 --- */
         .team-members {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.1rem;
@@ -566,23 +567,19 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 8px 12px;
+            gap: 8px 16px;
         }
 
         .team-members span {
             display: inline-block;
-            min-width: calc(25% - 9px);
             text-align: center;
+            min-width: calc(25% - 12px);
         }
 
         .team-members span:nth-child(n+5) {
-            min-width: calc(33.333% - 8px);
+            min-width: calc(33.333% - 11px);
         }
-
-        /* 6명 팀: 3-3 레이아웃 */
-        .team-card:has(.team-members span:nth-child(6):last-child) .team-members span {
-            min-width: calc(33.333% - 8px);
-        }
+        /* --- 여기까지 --- */
 
         .footer {
             padding: 100px 40px 60px;
@@ -649,26 +646,6 @@
             .timeline-dot {
                 left: 30px;
             }
-
-            /* 7명 팀: 2-2-3 레이아웃 */
-            .team-members {
-                gap: 12px 12px;
-            }
-
-            .team-members span {
-                min-width: calc(50% - 6px);
-            }
-
-            .team-members span:nth-child(5),
-            .team-members span:nth-child(6),
-            .team-members span:nth-child(7) {
-                min-width: calc(33.333% - 8px);
-            }
-
-            /* 6명 팀: 3-3 레이아웃 */
-            .team-card:has(.team-members span:nth-child(6):last-child) .team-members span {
-                min-width: calc(33.333% - 8px);
-            }
         }
 
         @media (max-width: 480px) {
@@ -719,19 +696,15 @@
                 font-size: clamp(1rem, 2.5vw, 1.2rem);
             }
 
-            /* 7명 팀: 4-3 레이아웃 */
+            /* --- 모바일용 이름 정렬 수정 코드 --- */
             .team-members span {
-                min-width: calc(25% - 7.5px);
+                min-width: calc(50% - 8px);
             }
 
             .team-members span:nth-child(n+5) {
-                min-width: calc(33.333% - 7px);
+                min-width: calc(50% - 8px);
             }
-
-            /* 6명 팀: 3-3 레이아웃 */
-            .team-card:has(.team-members span:nth-child(6):last-child) .team-members span {
-                min-width: calc(33.333% - 7px);
-            }
+            /* --- 여기까지 --- */
         }
     </style>
 </head>
