@@ -557,7 +557,8 @@
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
         }
 
-        /* --- 데스크탑 기본 레이아웃 --- */
+        /* --- [데스크탑 기본] --- */
+        /* 기본 4열 정렬 */
         .team-members {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.1rem;
@@ -570,14 +571,13 @@
             gap: 8px 16px;
         }
 
-        /* 데스크탑: 기본 4명 정렬 */
         .team-members span {
             display: inline-block;
             text-align: center;
-            min-width: calc(25% - 12px); 
+            min-width: calc(25% - 12px);
         }
-        
-        /* 데스크탑: 5번째부터는 3명 정렬 (안정감) */
+
+        /* 5번째부터는 3열 */
         .team-members span:nth-child(n+5) {
             min-width: calc(33.333% - 11px);
         }
@@ -649,7 +649,6 @@
             }
         }
 
-        /* --- 모바일 전용 레이아웃 수정 (480px 이하) --- */
         @media (max-width: 480px) {
             .hero {
                 padding: 60px 20px;
@@ -698,30 +697,33 @@
                 font-size: clamp(1rem, 2.5vw, 1.2rem);
             }
 
-            /* --- 팀원 정렬 로직 (모바일) --- */
-            
-            /* 1. 기본값: 2명씩 정렬 (5명, 8명 등 기타 인원일 때) */
+            /* --- [모바일 정렬 로직] --- */
+            /* 간격 미세 조정 */
+            .team-members {
+                gap: 8px 10px; 
+            }
+
+            /* 1. 기본: 2명씩 (5명일 때 등) */
             .team-members span {
-                min-width: calc(50% - 8px);
+                min-width: calc(50% - 5px);
             }
             .team-members span:nth-child(n+5) {
-                min-width: calc(50% - 8px);
+                min-width: calc(50% - 5px);
             }
 
-            /* 2. 6명일 때: 3명 - 3명 정렬 */
+            /* 2. [6명일 때] -> 3명 / 3명 (3-3 정렬) */
             .team-members:has(span:nth-child(6):last-child) span {
-                min-width: calc(33.333% - 8px);
+                min-width: calc(33.333% - 7px);
             }
 
-            /* 3. 7명일 때: 4명 - 3명 정렬 */
-            /* 윗줄 4명 (글씨 작게) */
+            /* 3. [7명일 때] -> 2명 / 2명 / 3명 (2-2-3 정렬) */
+            /* 1~4번은 50% (기본값 사용) */
             .team-members:has(span:nth-child(7):last-child) span {
-                min-width: calc(25% - 6px); 
-                font-size: 0.95rem; /* 4명이 한 줄이라 폰트 조금 축소 */
+                min-width: calc(50% - 5px); 
             }
-            /* 아랫줄 3명 */
+            /* 5~7번은 33% */
             .team-members:has(span:nth-child(7):last-child) span:nth-child(n+5) {
-                min-width: calc(33.333% - 8px);
+                min-width: calc(33.333% - 7px);
             }
         }
     </style>
