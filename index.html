@@ -328,10 +328,11 @@
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-size: clamp(2rem, 6vw, 5rem);
             text-align: center;
-            letter-spacing: 12px;
+            letter-spacing: clamp(3px, 1vw, 12px);
             margin-bottom: 100px;
+            padding: 0 20px;
             background: linear-gradient(180deg, #fff 0%, #c8b8ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -482,9 +483,9 @@
 
         .dresscode-text {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 8vw, 3.5rem);
             font-weight: 900;
-            letter-spacing: 8px;
+            letter-spacing: clamp(2px, 1vw, 8px);
             background: linear-gradient(180deg, #fff 0%, #c8b8ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -636,6 +637,26 @@
             .timeline-dot {
                 left: 30px;
             }
+
+            /* 7명 팀: 2-2-3 레이아웃 */
+            .team-members {
+                gap: 12px 8px;
+            }
+
+            .team-members span {
+                min-width: calc(50% - 4px);
+            }
+
+            .team-members span:nth-child(5),
+            .team-members span:nth-child(6),
+            .team-members span:nth-child(7) {
+                min-width: calc(33.333% - 6px);
+            }
+
+            /* 6명 팀: 3-3 레이아웃 */
+            .team-card:has(.team-members span:nth-child(6):last-child) .team-members span {
+                min-width: calc(33.333% - 6px);
+            }
         }
 
         @media (max-width: 480px) {
@@ -655,12 +676,29 @@
                 padding: 0 10px;
             }
 
-            .team-members span {
-                min-width: calc(50% - 8px);
+            .section-title {
+                font-size: clamp(1.8rem, 8vw, 3rem);
+                letter-spacing: clamp(2px, 0.5vw, 6px);
             }
 
-            .team-members span:nth-child(n+5) {
-                min-width: calc(50% - 8px);
+            .dresscode-text {
+                font-size: clamp(1.5rem, 10vw, 3rem);
+            }
+
+            /* 7명 팀: 2-2-3 레이아웃 */
+            .team-members span {
+                min-width: calc(50% - 4px);
+            }
+
+            .team-members span:nth-child(5),
+            .team-members span:nth-child(6),
+            .team-members span:nth-child(7) {
+                min-width: calc(33.333% - 6px);
+            }
+
+            /* 6명 팀: 3-3 레이아웃 */
+            .team-card:has(.team-members span:nth-child(6):last-child) .team-members span {
+                min-width: calc(33.333% - 6px);
             }
         }
     </style>
