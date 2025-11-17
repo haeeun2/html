@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Multy Play 2025</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:wght@400;500;600;700;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: #0a0a14;
+            color: #fff;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="4.2" numOctaves="5" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.05"/></svg>');
+            pointer-events: none;
+            z-index: 10000;
+            animation: grain 8s steps(10) infinite;
+            mix-blend-mode: overlay;
+        }
+
+        @keyframes grain {
+            0%, 100% { transform: translate(0, 0); }
+            10% { transform: translate(-5%, -10%); }
+            30% { transform: translate(3%, -15%); }
+            50% { transform: translate(12%, 9%); }
+            70% { transform: translate(9%, 4%); }
+            90% { transform: translate(-1%, 7%); }
+        }
+
+        .bokeh {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bokeh-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .bokeh-circle:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(120, 100, 200, 0.5), transparent);
+            top: 15%;
+            left: 10%;
+        }
+
+        .bokeh-circle:nth-child(2) {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(140, 120, 220, 0.4), transparent);
+            top: 55%;
+            right: 15%;
+            animation-delay: 4s;
+        }
+
+        .bokeh-circle:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(160, 140, 240, 0.35), transparent);
+            bottom: 25%;
+            left: 20%;
+            animation-delay: 8s;
+        }
+
+        .bokeh-circle:nth-child(4) {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(130, 110, 210, 0.3), transparent);
+            top: 35%;
+            right: 5%;
+            animation-delay: 12s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(40px, -40px) scale(1.15); }
+            50% { transform: translate(-30px, 30px) scale(0.95); }
+            75% { transform: translate(25px, -20px) scale(1.05); }
+        }
+
+        .light-beam {
+            position: fixed;
+            top: -50%;
+            left: -10%;
+            width: 120%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 0%, transparent 40%, rgba(180, 160, 255, 0.15) 45%, rgba(200, 180, 255, 0.25) 50%, rgba(180, 160, 255, 0.15) 55%, transparent 60%, transparent 100%);
+            pointer-events: none;
+            z-index: 5;
+            animation: lightSweep 4s ease-in-out 0.5s;
+            opacity: 0;
+        }
+
+        @keyframes lightSweep {
+            0% { transform: translateX(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) rotate(45deg); opacity: 0; }
+        }
+
+        .flare {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 25% 25%, rgba(180, 160, 255, 0.12) 0%, transparent 40%), radial-gradient(ellipse at 75% 75%, rgba(160, 140, 235, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 2;
+            animation: flareBreath 10s ease-in-out infinite;
+        }
+
+        @keyframes flareBreath {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.9; }
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 40px;
+            z-index: 3;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1200px;
+            position: relative;
+            z-index: 4;
+        }
+
+        .year {
+            font-family: 'Courier New', monospace;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 20px;
+            color: rgba(180, 160, 255, 0.5);
+            margin-bottom: 40px;
+            animation: fadeInUp 1.2s ease forwards, glitchText 4s infinite;
+            text-transform: uppercase;
+        }
+
+        @keyframes glitchText {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-2px, 1px); }
+            94% { transform: translate(2px, -1px); }
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 10vw, 11rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin: 30px 0;
+            padding: 0 20px;
+            background: linear-gradient(180deg, #fff 0%, #e8e0ff 40%, #c8b8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: clamp(2px, 0.8vw, 12px);
+            animation: fadeInUp 1.2s ease forwards 0.4s, titleFloat 6s ease-in-out infinite 2s;
+            opacity: 0;
+            filter: drop-shadow(0 15px 50px rgba(180, 160, 255, 0.7));
+            text-transform: uppercase;
+            max-width: 100%;
+            word-break: keep-all;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1rem, 3vw, 2.8rem);
+            font-weight: 400;
+            letter-spacing: clamp(2px, 0.6vw, 8px);
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 25px;
+            animation: fadeInUp 1.2s ease forwards 0.8s, subtitleShimmer 4s ease-in-out infinite 2.5s;
+            opacity: 0;
+            padding: 0 20px;
+            max-width: 100%;
+            word-break: keep-all;
+        }
+
+        @keyframes subtitleShimmer {
+            0%, 100% { text-shadow: 0 0 20px rgba(180, 160, 255, 0.3); }
+            50% { text-shadow: 0 0 30px rgba(180, 160, 255, 0.6); }
+        }
+
+        .theme {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            letter-spacing: 14px;
+            color: rgba(180, 160, 255, 0.75);
+            margin-top: 40px;
+            animation: fadeInUp 1.2s ease forwards 1.2s, pulse 3s ease-in-out infinite 3s;
+            opacity: 0;
+            text-transform: uppercase;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.75; }
+            50% { opacity: 1; }
+        }
+
+        .divider-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin: 60px 0;
+            animation: fadeInUp 1.2s ease forwards 1.6s;
+            opacity: 0;
+        }
+
+        .divider {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(180, 160, 255, 0.5), transparent);
+        }
+
+        .star {
+            color: rgba(180, 160, 255, 0.7);
+            font-size: 1.5rem;
+            animation: starTwinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes starTwinkle {
+            0% { opacity: 0.6; transform: scale(1) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(90deg); }
+            100% { opacity: 0.6; transform: scale(1) rotate(180deg); }
+        }
+
+        .info-section, .schedule-section, .dresscode-section, .participants-section {
+            position: relative;
+            padding: 120px 40px;
+            z-index: 3;
+        }
+
+        .info-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .info-card {
+            padding: 60px 45px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(180, 160, 255, 0.12);
+            border-radius: 8px;
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(60px);
+        }
+
+        .info-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(180, 160, 255, 0.35);
+            box-shadow: 0 25px 70px rgba(180, 160, 255, 0.25);
+        }
+
+        .info-label {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            letter-spacing: 6px;
+            color: rgba(180, 160, 255, 0.75);
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .info-value strong {
+            font-weight: 700;
+            color: #fff;
+            font-size: 1.7rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            text-align: center;
+            letter-spacing: 12px;
+            margin-bottom: 100px;
+            background: linear-gradient(180deg, #fff 0%, #c8b8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, transparent, rgba(180, 160, 255, 0.4), transparent);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 60px 0;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 40px 45px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(180, 160, 255, 0.12);
+            border-radius: 8px;
+            transition: all 0.5s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: rgba(180, 160, 255, 0.35);
+            box-shadow: 0 15px 50px rgba(180, 160, 255, 0.25);
+            transform: scale(1.05);
+        }
+
+        .timeline-time {
+            font-family: 'Cinzel', serif;
+            font-size: 1.7rem;
+            color: rgba(180, 160, 255, 0.85);
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .timeline-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            width: 18px;
+            height: 18px;
+            background: rgba(180, 160, 255, 0.9);
+            border: 5px solid #0a0a14;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 35px rgba(180, 160, 255, 0.9);
+            z-index: 2;
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { box-shadow: 0 0 35px rgba(180, 160, 255, 0.9); }
+            50% { box-shadow: 0 0 50px rgba(180, 160, 255, 1), 0 0 70px rgba(180, 160, 255, 0.5); }
+        }
+
+        .dresscode-card {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 80px 60px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(40px);
+            border: 2px solid rgba(180, 160, 255, 0.25);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s ease;
+        }
+
+        .dresscode-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dresscode-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(180, 160, 255, 0.08), transparent);
+            animation: shine 5s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .dresscode-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .dresscode-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            letter-spacing: 8px;
+            color: rgba(180, 160, 255, 0.7);
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .dresscode-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 8px;
+            background: linear-gradient(180deg, #fff 0%, #c8b8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            animation: textGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(180, 160, 255, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(180, 160, 255, 0.8)); }
+        }
+
+        .teams-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .team-card {
+            padding: 40px 35px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(180, 160, 255, 0.12);
+            border-radius: 8px;
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(60px);
+        }
+
+        .team-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(180, 160, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(180, 160, 255, 0.2);
+        }
+
+        .team-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: rgba(180, 160, 255, 0.9);
+            margin-bottom: 25px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .team-leader {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #FFFFFFCC;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .team-members {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 16px;
+        }
+
+        .team-members span {
+            display: inline-block;
+            min-width: calc(25% - 12px);
+            text-align: center;
+        }
+
+        .team-members span:nth-child(n+5) {
+            min-width: calc(33.333% - 11px);
+        }
+
+        .footer {
+            padding: 100px 40px 60px;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+            border-top: 1px solid rgba(180, 160, 255, 0.15);
+        }
+
+        .credits {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .credit-item {
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .credit-item strong {
+            color: rgba(180, 160, 255, 0.7);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: clamp(3rem, 12vw, 10rem);
+                letter-spacing: clamp(1px, 0.4vw, 6px);
+            }
+            
+            .subtitle {
+                font-size: clamp(0.9rem, 4vw, 2.2rem);
+                letter-spacing: clamp(1px, 0.3vw, 4px);
+            }
+
+            .theme {
+                font-size: 1rem;
+                letter-spacing: clamp(6px, 1.5vw, 10px);
+            }
+
+            .info-grid, .teams-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start;
+                padding-left: 70px;
+            }
+            
+            .timeline-content {
+                width: 100%;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .main-title {
+                font-size: clamp(2.5rem, 15vw, 10rem);
+                letter-spacing: clamp(0px, 0.2vw, 3px);
+                padding: 0 10px;
+            }
+
+            .subtitle {
+                font-size: clamp(0.8rem, 5vw, 2rem);
+                letter-spacing: clamp(0px, 0.2vw, 3px);
+                padding: 0 10px;
+            }
+
+            .team-members span {
+                min-width: calc(50% - 8px);
+            }
+
+            .team-members span:nth-child(n+5) {
+                min-width: calc(50% - 8px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+    <div class="bokeh">
+        <div class="bokeh-circle"></div>
+        <div class="bokeh-circle"></div>
+        <div class="bokeh-circle"></div>
+        <div class="bokeh-circle"></div>
+    </div>
+    <div class="flare"></div>
+    <div class="light-beam"></div>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <div class="year">2025</div>
+            <h1 class="main-title">MULTY<br>PLAY</h1>
+            <p class="subtitle">The Sequence Of Time</p>
+            <div class="divider-container">
+                <div class="divider"></div>
+                <span class="star">✦</span>
+                <div class="divider"></div>
+            </div>
+            <p class="theme">시작과 끝</p>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-label">Date & Time</div>
+                <div class="info-value">
+                    <strong>2025년 11월 19일</strong><br>
+                    수요일 오후 6시
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-label">Venue</div>
+                <div class="info-value">
+                    <strong>인문사회과학관</strong><br>
+                    5층 학술회의실
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-label">Theme</div>
+                <div class="info-value">
+                    <strong>연말 시상식</strong><br>
+                    Year-End Awards
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="schedule-section">
+        <h2 class="section-title">Schedule</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">18:00 - 18:30</div>
+                    <div class="timeline-text">오프닝</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">18:30 - 19:50</div>
+                    <div class="timeline-text">작품 상영회</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">19:50 - 20:10</div>
+                    <div class="timeline-text">휴식 및 작품 투표</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">20:10 - 20:30</div>
+                    <div class="timeline-text">스페셜 스테이지</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">20:30 - 21:30</div>
+                    <div class="timeline-text">레크레이션</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">21:30 - 21:50</div>
+                    <div class="timeline-text">시상식</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-time">21:50 - 22:00</div>
+                    <div class="timeline-text">클로징</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dresscode-section">
+        <div class="dresscode-card">
+            <div class="dresscode-content">
+                <div class="dresscode-title">Dress Code</div>
+                <div class="dresscode-text">FORMAL LOOK</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="participants-section">
+        <h2 class="section-title">Participants</h2>
+        <div class="teams-grid">
+            <div class="team-card">
+                <div class="team-name">1조가 큰1냈죠</div>
+                <div class="team-leader">팀장: 김대겸</div>
+                <div class="team-members">
+                    <span>박별희</span><span>이승학</span><span>임재균</span><span>허주은</span><span>이정빈</span><span>임다희</span>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-name">2기는팀울2팀</div>
+                <div class="team-leader">팀장: 노승연</div>
+                <div class="team-members">
+                    <span>박시온</span><span>김다흰</span><span>유동협</span><span>최인우</span><span>고건영</span><span>우재민</span><span>이아현</span>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-name">3AM</div>
+                <div class="team-leader">팀장: 김이안</div>
+                <div class="team-members">
+                    <span>노준영</span><span>김연수</span><span>윤다니엘</span><span>이시은</span><span>김유현</span><span>신진철</span><span>오현진</span>
+                </div>
+            </div>
+            
+            <div class="team-card">
+                <div class="team-name">사이다맛포도</div>
+                <div class="team-leader">팀장: 김주현</div>
+                <div class="team-members">
+                    <span>김나경</span><span>김민서</span><span>김정현</span><span>이강</span><span>양현석</span><span>임유진</span><span>소지원</span>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-name">5좋</div>
+                <div class="team-leader">팀장: 이원재</div>
+                <div class="team-members">
+                    <span>박가희</span><span>손주하</span><span>유마린</span><span>최현호</span><span>이랑희</span><span>최진영</span>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-name">육쾌</div>
+                <div class="team-leader">팀장: 신혜선</div>
+                <div class="team-members">
+                    <span>배현</span><span>서지영</span><span>오빈</span><span>진승환</span><span>이아진</span><span>장채린</span><span>정승진</span>
+                </div>
+            </div>
+            
+            <div class="team-card">
+                <div class="team-name">럭키세븐</div>
+                <div class="team-leader">팀장: 홍세진</div>
+                <div class="team-members">
+                    <span>전우혁</span><span>김재겸</span><span>박민주</span><span>손정완</span><span>김연희</span><span>임준서</span>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-name">8토준지</div>
+                <div class="team-leader">팀장: 류강민</div>
+                <div class="team-members">
+                    <span>김소희</span><span>김현일</span><span>오은빈</span><span>이서진</span><span>박민우</span><span>용미경</span><span>조수연</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="credits">
+            <div class="credit-item"><strong>Organized by</strong> Department of Multimedia Student Council Palette</div>
+            <div class="credit-item"><strong>2025</strong> Academic Festival</div>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.info-card, .timeline-item, .dresscode-card, .team-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
