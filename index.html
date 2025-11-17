@@ -328,9 +328,9 @@
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 6vw, 5rem);
+            font-size: clamp(2.5rem, 7vw, 5.5rem);
             text-align: center;
-            letter-spacing: clamp(3px, 1vw, 12px);
+            letter-spacing: clamp(4px, 1.2vw, 12px);
             margin-bottom: 100px;
             padding: 0 20px;
             background: linear-gradient(180deg, #fff 0%, #c8b8ff 100%);
@@ -404,7 +404,7 @@
 
         .timeline-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.35rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
             line-height: 1.9;
             color: rgba(255, 255, 255, 0.8);
             font-weight: 500;
@@ -432,7 +432,7 @@
         .dresscode-card {
             max-width: 750px;
             margin: 0 auto;
-            padding: 80px 60px;
+            padding: 60px 40px;
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(40px);
             border: 2px solid rgba(180, 160, 255, 0.25);
@@ -473,19 +473,19 @@
 
         .dresscode-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            letter-spacing: 8px;
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            letter-spacing: clamp(4px, 1vw, 8px);
             color: rgba(180, 160, 255, 0.7);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             font-weight: 600;
             text-transform: uppercase;
         }
 
         .dresscode-text {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 8vw, 3.5rem);
+            font-size: clamp(2.5rem, 10vw, 4.5rem);
             font-weight: 900;
-            letter-spacing: clamp(2px, 1vw, 8px);
+            letter-spacing: clamp(3px, 1.5vw, 10px);
             background: linear-gradient(180deg, #fff 0%, #c8b8ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -588,9 +588,9 @@
 
         .credit-item {
             font-family: 'Cinzel', serif;
-            font-size: 1.05rem;
+            font-size: clamp(0.75rem, 1.5vw, 0.95rem);
             color: rgba(255, 255, 255, 0.5);
-            letter-spacing: 5px;
+            letter-spacing: clamp(2px, 0.5vw, 4px);
             text-transform: uppercase;
         }
 
@@ -677,12 +677,16 @@
             }
 
             .section-title {
-                font-size: clamp(1.8rem, 8vw, 3rem);
+                font-size: clamp(2rem, 8vw, 3.5rem);
                 letter-spacing: clamp(2px, 0.5vw, 6px);
             }
 
             .dresscode-text {
-                font-size: clamp(1.5rem, 10vw, 3rem);
+                font-size: clamp(2rem, 12vw, 3.5rem);
+            }
+
+            .dresscode-card {
+                padding: 40px 30px;
             }
 
             /* 7명 팀: 2-2-3 레이아웃 */
